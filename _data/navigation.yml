@@ -1,0 +1,31 @@
+main:
+#  - title: "Quick-Start Guide"
+#    url: /docs/quick-start-guide/
+  - title: "Home"
+    url: index 
+  - title: "Publications"
+    url: _pages/publications 
+  - title: "News"
+    url: _pages/news 
+  - title: "Research"
+    url: _pages/research 
+  - title: "Teaching"
+    url: _pages/teaching
+  - title: "Code"
+    url: _pages/code
+  - title: "Talks"
+    url: _pages/talks
+## main links
+#main:
+#  - title: "Quick-Start Guide"
+#    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+#  - title: "Research"
+#    url: /research.html
+#  - title: "Talks"
+#    url: talks.html
+#  - title: "Categories"
+#    url: /categories/
+# - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/

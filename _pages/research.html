@@ -1,0 +1,261 @@
+---
+layout: splash
+author_profile: true
+classes: wide
+---
+
+<h1>Research</h1>
+
+<p>
+Below follows a summary of some of the problems I am working on. 
+</p>
+
+<h2>1. Inverse problems related to imaging</h2>
+<h3>Introduction</h3>
+<p>
+Let $A \in \mathbb{C}^{m \times N}$ with $m < N$ be a model of your sampling modality. That is a subsampled Fourier transform for applications such as Magnetic Resonance Imaging (MRI), surface scattering, Computerized Tomography (CT) and electron microscopy or a subsampled Walsh-Hadamard transform in applications such as fluorescence microscopy, lensless imaging and other optical imaging modalities. Let $x \in \mathbb{C}^{N}$ be a signal of interest, and assume that the only way we can observe $x$ is via measurements
+\[ y = Ax + e, \] 
+where $e\in \mathbb{C}^{m}$ is some unknown measurement noise. Since $m < N$, this linear system is <em>underdetermined</em> and hence there exist many $x$'s which agree with the measurements $y$.  Given that you know $y$ and $A$, there exist many interesting questions one may ask   
+
+<ol class="parentheses" >
+<li>How do we <em>stably</em> and <em>accurately</em> recover $x$ from the noisy measurements $y$?</li>
+<li>In the case where $A$ is a subsampled Fourier or Walsh-Hadamard transform, how should we subsample these transforms? </li>
+<li>Given the existence of a $\hat{x}$ which approximates $x$ well, does there exist algorithms which can compute approximations to $\hat{x}$ with finitely many arithmetic operations? </li>
+</ol>
+</p>
+
+<h3>Question (1)</h3>
+<p>
+Starting with question (1), the short answer to this question is <em>no</em>, if no other prior assumptions or data are available. Thus to find a positive answer to the aforementioned question one out of two possible approaches are typically chosen
+<ol class="parentheses_roman">
+    <li> Add the prior assumption that $x$ can be well approximated by a sparse vector, and use sparse regularization techniques to recover an approximation to $x$. Within medical imaging this is often referred to as <em>Compressive sensing</em> </li>
+    <li> Given a set $\{(y_1, x_1), \ldots, (y_n, x_n)\} \subset \mathbb{C}^{m}
+\times \mathbb{C}^N$ of measurements and signals $(y_i, x_i)$ one can try to
+<em>learn the inverse</em> by training a neural network $f \colon \mathbb{C}^{m} \to \mathbb{C}^{N}$ to recover $x$ given $y$. This approach is trying to learn directly from data, rather than using <em>a priori</em> knowledge. 
+ </li>
+</ol>
+</p>
+
+<p>
+The approach (i) was introduced by Candes, Romberg & Tao in [1] and Donoho in [2], and by now there exists a myriad of different theorems and conditions for which one can assure stable and accurate reconstruction of approximately sparse vectors. One such result was provided in [3] where we introduced uniform recovery guarantees for functions in $L^2([0,1])$ which are approximately sparse in wavelets. What is important to notice about these sparse regularisation techniques, is that many of these approaches come with mathematical guarantees ensuring stable and accurate recovery, if the assumption that $x$ can be well approximated by a sparse vector holds. (Strictly speaking, for imaging applications $x$ itself will not be sparse, but it will be assumed to be sparse in wavelets, shearlets etc.) 
+</p>
+<p>
+On the other hand, we have approach (ii) which is based purely on learning and often does not make any prior assumptions about $x$. This approach has gained momentum in the last few years with the introduction of <em>deep learning</em>, large datasets and increased computational power using graphics processing units (GPUs) to perform fast computations. One example of this approach was published in <em>Nature</em> [4] where the authors train a neural network and highlight the advantages of the deep learning approach over traditional state-of-the-art methods. This was followed up by a research highlight article in <em>Nature Methods</em> entitled "<cite>AI transforms image reconstruction</cite>" [5]. In our recent paper [6], we empirically show that this network and many other networks suffer from instability issues and that these instabilities may occur in many different forms.  This paper will be followed up by [7], which explains why neural networks typically become unstable. 
+</p>
+
+<!--
+<figure>
+    <table>
+    
+    <tr>
+      <td style="text-align:center;">$|x|$ </td> 
+      <td style="text-align:center;">$|x + r_1|$</td> 
+      <td style="text-align:center;">$|x + r_2|$</td>
+      <td style="text-align:center;">$|x + r_3|$</td> 
+    </tr>
+
+    <tr>  
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_0_noisy.png"     style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_1_noisy.png"     style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_2_noisy.png"     style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_5_idx_4_noisy.png"     style="width:180px;" ></th>
+    </tr>  
+    <tr>
+      <td style="text-align:center;">$ f(Ax)$ </td> 
+      <td style="text-align:center;">$   f(A(x + r_1))$</td> 
+      <td style="text-align:center;">$   f(A(x + r_2))$</td>
+      <td style="text-align:center;">$   f(A(x + r_3))$</td> 
+    </tr>
+    <tr>  
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_0_noisy_rec.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_1_noisy_rec.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_3_idx_2_noisy_rec.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/runner_50_int_5_idx_4_noisy_rec.png" style="width:180px;" ></th>
+    </tr>  
+
+    <tr>
+        <td style="text-align:center;">SoA from $A(x)$ </td>
+        <td style="text-align:center;">SoA from $A(x+r_1)$ </td>
+        <td style="text-align:center;">SoA from $A(x+r_2)$ </td>
+        <td style="text-align:center;">SoA from $A(x+r_3)$ </td>  
+    </tr>
+    <tr>  
+        <td><img src="./pictures/neural_nets/rec_shearlet_run_50_int_3_idx_0.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/rec_shearlet_run_50_int_3_idx_1.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/rec_shearlet_run_50_int_3_idx_2.png" style="width:180px;" ></th>
+        <td><img src="./pictures/neural_nets/rec_shearlet_run_50_int_5_idx_4.png" style="width:180px;" ></th>
+    </tr>
+    </table>
+<figcaption> <p>
+<b>Figure 1.</b>
+Perturbations $\tilde{r}_j$ are added to the measurements $y = Ax$, where $|\tilde{r}_1 | < |\tilde{r}_2 | < |\tilde{r}_3 |$ and $A$ is a subsampled Fourier transform (60% subsampling). To visualise we show $|x + r_j |$ where $y + \tilde{r}_j = A(x + r_j )$. Upper row: original image $x$ with perturbations $r_j$ . Middle row: reconstructions from $A(x + r_j )$ by the AUTOMAP network $f$ considered in [4]. Lower row: reconstructions from $A(x + r_j)$ by a state-of-the-art (SoA) sparse regularization method . A detail in form of a heart, with varying intensity, is added to visualise the loss in quality.
+    </p> </figcaption>
+</figure>
+-->
+
+<h3>Question (2)</h3>
+
+<p>
+For imaging applications with Fourier or Walsh-Hadamard sampling and wavelet reconstruction it is well known that the set of $s$-sparse vectors 
+\[\Sigma_{s} = \{x \in \mathbb{C}^{N}: x \text{ has at most } s \text{ non-zero entries}\}\]
+is to general for images. Therefore one typically partition the entries of $x$ into different levels. That is, let $\mathbf{s} = [s_1, \ldots, s_r] \in \mathbb{N}^{r}$ and let $\mathbf{M}=[M_1, \ldots, M_r]\in \mathbb{N}^{r}$ with $M_1< \cdots < M_r=N$ and $M_0=0$, we say that a vector is $(\mathbf{s}, \mathbf{M})$-sparse if
+\[  \text{supp}(x)\cap \{M_{l-1}+1, \ldots, M_l\} \leq s_l, \quad\text{for }\quad l=1,\ldots, r \]  
+and we denote the set of $(\mathbf{s},\mathbf{M})$-sparse vectors by $\Sigma_{\mathbf{s}, \mathbf{M}}$.  If $x$ is sparse in wavelets, the entries of $\mathbf{M}$ will typically correspond to the different wavelet scales. 
+</p>
+<!--
+<figure>
+    <table>
+
+    <tr>  
+        <td><img src="./pictures/compressive_sensing/aWalsh_peppers1_wavelet_srate_20_db4_uniform.png"      style="width:220px;" ></th>
+        <td><img src="./pictures/compressive_sensing/aWalsh_peppers1_wavelet_srate_20_db4_DAS.png"          style="width:220px;" ></th>
+    </tr>  
+    <tr>  
+        <td><img src="./pictures/compressive_sensing/aWalsh_peppers1_wavelet_srate_20_db4_uniform_samp.png" style="width:220px;" ></th>
+        <td><img src="./pictures/compressive_sensing/aWalsh_peppers1_wavelet_srate_20_db4_DAS_samp.png"     style="width:220px;" ></th>
+    </tr>  
+    </table>
+<figcaption> <p>
+<b>Figure 2.</b> Top row: Compressive sensing reconstruction using Walsh-Hadamard sampling and wavelet sparsity.
+Bottom row: The two subsampling patterns used to produce the measurements. The left and right patterns were used to recover the left and right images, respectively. If the set of $s$-sparse vectors had been the right model for imaging applications, the left sampling pattern would be optimal. As can be seen from the reconstruction, this is not the case. The question is, therefore, how should one should sample to recover $(\mathbf{s}, \mathbf{M})$-vectors? 
+</p>
+</figcaption>
+</figure>
+-->
+<p>
+Assuming that $x$ can be well approximated by a $(\mathbf{s}, \mathbf{M})$-sparse vector, how should one choose the set of Fourier or Walsh-Hadamard frequencies one would like to subsample in 2D, to achieve optimal recovery with a minimum number of samples. In [8] we introduce new sampling strategies which are theoretically optimal for $(\mathbf{s},\mathbf{M})$-sparse vectors for 2-dimensional sampling operators.
+</p>
+
+<h3>Question (3)</h3>
+Compressive sensing and sparse regularization in general typically relies on decoders such as 
+\begin{align}
+&\text{minimize}_{z \in \mathbb{C}^{N}} \|z\|_{\ell_1} \quad\text{subject to}\quad \|AW^{-1}z - y\|_{\ell_2}^{2} \leq \eta \tag{BP}\\ 
+&\text{minimize}_{z \in \mathbb{C}^{N}} \|z\|_{\ell_1} + \lambda \|AW^{-1}z - y\|_{\ell_2}^{2}, \quad \lambda >0   \tag{L} 
+\end{align}
+where $W \in \mathbb{C}^{N \times N}$ is a sparsifying transform (assumed to be unitary for simplicity). Most compressive sensing recovery guarantees then considers minimizers of optimization problem, such as the one mentioned above. To give an example consider the following definition and theorem (see [9] for details).
+
+<h4>Definition 1</h4>
+<p>
+Let $\mathbf{s}, \mathbf{M} \in \mathbb{N}^{r}$ be given local sparsities and sparsity levels, respectively.  For a matrix $A \in \mathbb{C}^{m \times N}$ the Restricted Isometry Constant in Levels (RICL) of order $(\mathbf{s}, \mathbf{M})$, denoted $\delta =\delta_{\mathbf{s},\mathbf{M}}$ , is the smallest $\delta \geq 0$ such that
+\[
+(1 - \delta)\|x\|_{\ell_{2}}^{2} \leq \|Ax\|_{\ell_{2}}^{2} \leq (1+\delta)\|x\|_{\ell_2}^{2}, \quad \quad\forall x \in \Sigma_{\mathbf{s}, \mathbf{M}} 
+\]
+</p>
+<h4>Theorem 2</h4>
+<p>
+    Let $\mathbf{s},\mathbf{M} \in \mathbb{N}^r$ be local sparsities and sparsity levels, respectively.  Let $\alpha_{\mathbf{s},\mathbf{M}} = \max_{k,l=1,\ldots,r} s_{l}/s_{k}$ and $s = s_1 + \cdots + s_r$. Suppose that the RICL $\delta_{2\mathbf{s},\mathbf{M}}\geq 0$ for the matrix $AW^{-1} \in \mathbb{C}^{m\times M}$ satisfies 
+\begin{equation}
+    \delta_{2\mathbf{s},\mathbf{M}} < \frac{1}{\sqrt{r(\sqrt{\alpha_{\mathbf{s},\mathbf{M}}}+\tfrac{1}{4})^2+1}}.
+\end{equation}  
+Then, for  $x\in \mathbb{C}^{N}$ and $e \in \mathbb{C}^{m}$ with $\|e\|_{2}\leq \eta$, any solution $\hat{x}$ of 
+\[ \text{minimize}_{z \in \mathbb{C}^N} \|z\|_1 \quad\text{subject to}\quad
+\|z - (AW^{-1}x+e)\|_{2} \leq \eta \] 
+satisfies
+\[
+\|x-\hat{x}\|_2 \leq 
+(C + C' (r\alpha_{\mathbf{s}, \mathbf{M}})^{1/4}) \frac{\sigma_{\mathbf{s},\mathbf{M}}(x)_1}{\sqrt{s}} 
++ (D + D' (r\alpha_{\mathbf{s}, \mathbf{M}})^{1/4}) \eta
+\]
+where $C,C', D, D' > 0$ are constants which only dependent on $\delta_{2\mathbf{s},\mathbf{M}}$ and where $\sigma_{\mathbf{s}, \mathbf{M}}(x)_1 
+=\inf\{ \|x-z\|_{\ell_1} : z \in \Sigma_{\mathbf{s}, \mathbf{M}} \}$ denotes the distance to $(\mathbf{s}, \mathbf{M})$-sparse vectors. 
+</p>
+
+
+<p>
+The key observation to make from this and other related theorems is that it states properties of the minimiser of, e.g., $(BP)$ or $(L)$. It does not take into account how we compute these minimizers with arithmetic operations and inexact input, i.e. we will typically not have access to $A \in \mathbb{C}^{m \times N}$ and $y \in \mathbb{C}^{m}$ with infinite precision, but for any $n \in \mathbb{N}$ we can compute $A_n$ and $y_n$ so that $\|A-A_n\|\leq 2^{-n}$ and $\|y-y_n\|\leq 2^{-n}$.  Thus an important question becomes whether there exist algorithms which stably can compute approximations to $\hat{x}$ given $(A_n, y_n)$ as input.
+</p>
+
+<p>
+In [10] we consider this problem for image reconstruction. We show that under certain conditions this it is possible to construct (non-learned) neural networks, which can obtain stable reconstruction near the manifold of $(\mathbf{s}, \mathbf{M})$-sparse vectors. We point out that this involves more than just unravelling your favourite convex optimisation solver as a neural network.
+</p>
+
+
+<h2>2. What do AI algorithms actually learn?</h2>
+<p>
+Neural networks and artificial intelligence (AI) techniques have ever since the AlexNet won the ImageNet object recognition challenge in 2012, shown impressive performance within classification problems. The performance of image classifiers is even referred to as superhuman [11]. Despite this tremendous success, one thing seems universal for all of these classifiers; only a tiny perturbation of the input results in completely wrong classification, often with highly non-human behaviour. 
+</p>
+<p>
+For example, two images of a mole, that to the human doctor look identical, may by the AI algorithm be classified completely differently: one with 99.9% certainty that it is benign and the other with 99.9% certainty that it is cancerous. The AI algorithm may classify a symphony as someone's voice, and a stop sign may be viewed as a 45 mph sign. 
+</p>
+
+<p>
+But, why are neural networks based on deep learning at the same time universally unstable, where the instabilities make the networks vulnerable to adversarial attacks. We present a solution to these questions that can be summed up in two words; <em>false structures</em>. Indeed, deep learning does not learn the original structures that humans use when recognising images (cats have whiskers, paws, fur, pointy ears, etc.), but rather different false structures that correlate with the original structure and hence yield the success.
+</p>
+
+<p>
+In [12] we formally define the notion of false structure and formulate the solution as a conjecture. Given that trained neural networks always are computed with approximations, this conjecture can only be established through a combination of theoretical and computational results similar to how one establishes a postulate in theoretical physics (e.g. the speed of light is constant). 
+</p>
+
+<h2>References</h2>
+<p>
+<ol>
+
+<li>
+E. J. Candès, J. Romberg, and T. Tao. <cite>Robust uncertainty principles: Exact signal reconstruction from highly incomplete frequency information</cite>. IEEE Transactions on Information
+Theory, 52(2):489–509, 2006.
+</li>
+
+<li>
+D. L. Donoho. <cite>Compressed sensing</cite>. IEEE Transactions on Information Theory, 52(4):1289–
+1306, 2006.
+</li>
+
+<li>
+B. Adcock, V. Antun, and A. C. Hansen. <cite>Uniform recovery in infinite-dimensional compressed
+sensing and applications to structured binary sampling</cite>. [<a href="https://arxiv.org/abs/1905.00126">arXiv</a>]
+</li>
+
+<li>
+B. Zhu, J. Z. Liu, S. F. Cauley, B. R. Rosen and M. S.
+Rosen, <cite>Image reconstruction by domain-transform manifold learning</cite>, Nature, vol. 555, no. 7697, p. 487, Mar.
+2018
+</li>
+
+<li>
+R. Strack, <cite>AI transforms image reconstruction</cite>, Nature Methods, vol. 15, p. 309, Apr. 2018.
+</li>
+
+<li>
+V. Antun, F. Renna, C. Poon, B. Adcock, and A. C. Hansen,
+"<cite>On instabilities of deep learning in image reconstruction
+- Does AI come at a cost?</cite>" [<a href="https://arxiv.org/abs/1902.05300">arXiv</a>]
+</li>
+
+<li>
+N. Gottschling, V. Antun, B. Adcock and A. C. Hansen,
+<cite>On the instability phenomenon in deep learning for
+inverse problems</cite>, (in preparation).
+</li>
+
+<li>
+B. Adcock, V. Antun, R. Bergman, and A. C. Hansen. <cite>Sampling strategies for
+compressive imaging</cite>, (in preparation).
+</li>
+
+<li>
+A. Bastounis and A. C. Hansen. <cite>On the absence of uniform recovery in many real-world
+applications of compressed sensing and the restricted isometry property and nullspace property in levels</cite>. 
+SIAM Journal on Imaging Sciences, 10(1):335–371, 2017.
+</li>
+
+<li>
+M. Colbrook, V. Antun, K. M. Haug and A. C. Hansen.
+<cite>
+On the existence of stable neural networks with recovery guarantees for inverse problems.
+</cite>, (in preparation).
+</li>
+
+<li>
+K. He, X. Zhang, S. Ren and J. Sun, <cite>Delving deep into
+rectifiers: Surpassing human-level performance on imagenet classification </cite>, in IEEE international conference on
+computer vision, 2015, pp. 1026–1034.
+</li>
+
+<li>
+L. Thesing, V. Antun and A. C. Hansen. <cite>What do AI algorithms actually learn? – On
+false structures in deep learning</cite> [<a href="https://arxiv.org/abs/1906.01478" >arXiv</a>]
+</li>
+
+</ol>
+</p>
+
