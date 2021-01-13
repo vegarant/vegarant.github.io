@@ -3,12 +3,12 @@ main:
 #    url: /docs/quick-start-guide/
   - title: "Home"
     url: index 
-  - title: "Publications"
-    url: _pages/publications 
   - title: "News"
     url: _pages/news 
-  - title: "Research"
-    url: _pages/research 
+  - title: "Publications"
+    url: _pages/publications 
+#  - title: "Research"
+#    url: _pages/research 
   - title: "Teaching"
     url: _pages/teaching
   - title: "Code"

@@ -5,33 +5,21 @@ classes: wide
 
 <h1>Code</h1>
 <p>
-This page contains an overview of the most noticeable code I have developed 
-and which I believe others might have use for. If you are searching for code
-related to a specific paper, you may consult my <a href="https://github.com/vegarant">Github</a> page.  
+This page contains an overview of general purpose code I have developed. If you are searching for code related to a specific paper, you may consult the <a href="{{ site.baseurl }}/_pages/publications">publications</a> page.  
 </p>
-<h2>cslib</h2>
+<h2>CIlib</h2>
 <p>
-The <em>cslib</em> library is a large collection of scripts and functions
-related to compressive sensing and image reconstruction tasks in general. It
-has been developed in relation to the upcoming book <em>Compressive
-imaging</em> by B. Adcock and A. C. Hansen, published by Cambridge University
-Press. It is expected to be out in August 2021.
+The <em>CIlib</em> library is a large collection of scripts and functions related to compressive sensing and image reconstruction tasks in general. It has been developed in relation to the book <i><a href="https://www.compressiveimagingbook.com/">Compressive Imaging: Structure, Sampling, Learning</a></i> by B. Adcock and A. C. Hansen (in press).
 </p>
 <ul>
 	<li> <b>Language:</b> Matlab</li>
-	<li> <b>Code:</b> <a href="https://bitbucket.org/vegarant/cslib/">https://bitbucket.org/vegarant/cslib/</a> </li>
+	<li> <b>Code:</b> <a href="https://github.com/vegarant/cilib">https://github.com/vegarant/cilib</a> </li>
 </ul>
 
 
 <h2>fastwht</h2>
 <p>
-The <em>fastwht</em> library is a very fast (CPU) implementation of the 
-fast <em>Walsh-Hadamard</em> transform. At the computational core it uses the
-<a href="https://www.jjj.de/fxt/">fxt library</a>. The library is 
-interfaced with Matlab and Python, providing (1) a substantially faster implementation
-of the <code>fwht</code> function in Matlab and (2) an implementation of the 
-Walsh-Hadamard transform in Python. It also includes an interface for the 
-sequency ordered Walsh function. 
+The <em>fastwht</em> library is a very fast (CPU) implementation of the fast <em>Walsh-Hadamard</em> transform. At the computational core it uses the <a href="https://www.jjj.de/fxt/">fxt library</a>. The library is interfaced with Matlab and Python, providing (1) a substantially faster implementation of the <code>fwht</code> function in Matlab and (2) an implementation of the Walsh-Hadamard transform in Python. It also includes an interface for the sequency ordered Walsh function. 
 </p>
 <ul>
 	<li> <b>Languages:</b> C/C++, Matlab and Python</li>
@@ -41,15 +29,7 @@ sequency ordered Walsh function.
 
 <h2>Continuous Walsh sampling and wavelet reconstruction</h2>
 <p>
-In many real world problems the samples one acquire comes from continuous
-integral transforms, rather than discrete measurements. If one does not take
-this into account when doing the reconstruction, it typically leads to noticeable
-artifacts in the reconstructed signal. This code takes the infinite
-dimensionality of continuous Walsh sampling and wavelet reconstruction into
-account and computes a vector-matrix multiplication between a finite section of
-the change of basis matrix in FFT-time. Note that this is not 
-the same as a naive call <code>fwht</code> and <code>wavedec</code> functions 
-in Matlab.
+In many real-world problems, the samples one acquire are better modeled using continuous integral transforms, rather than discrete measurements. Not taking this into account in the reconstruction process typically leads to noticeable artefacts in the reconstructed signals (functions). This code takes the infinite dimensionality of continuous Walsh sampling and wavelet reconstruction into account and computes a vector-matrix multiplication between a finite section of the change of basis matrix in FFT-time. Note that this is not the same as a naive call <code>fwht</code> and <code>wavedec</code> functions in Matlab.
 </p>
 <ul>
 	<li> <b>Language:</b> Matlab</li>
@@ -57,26 +37,20 @@ in Matlab.
 </ul>
 
 
-<h2>Applinalg</h2> 
-Contributed to Øyvind Ryan's wavelet library <em>applinalg</em>. 
-This is a full blown wavelet library which, despite being written in pure 
-Matlab and Python is almost comparable in speed with Matlabs own wavelet toolbox 
-and PyWavelets. It is also the only library, (which I know of) which fully 
-supports boundary adapted wavelets for both orthogonal and biorthogonal wavelets. 
+<h2>WL</h2>
+The WL library is a full-blown wavelet library which, despite being written in pure Matlab and Python, is almost comparable in speed with Matlab's wavelet toolbox and PyWavelets. It is the only library, (which I know of) which fully supports boundary adapted wavelets for both orthogonal and biorthogonal wavelets. Moreover, it can compute this for vectors with arbitrary lengths. This library is a fork from Øyvind Ryan's wavelet library <em>applinalg</em>, developed for the book <a href="https://www.springer.com/gp/book/9783030018115">Linear Algebra, Signal Processing, and Wavelets - A Unified Approach</a>. The extension supporting boundary wavelets on the interval is written by Øyvind and me.  
 <ul>
 	<li> <b>Languages:</b> Matlab and Python</li>
-	<li> <b>Code:</b> <a href="https://github.com/oyvindry/applinalgcode">https://github.com/oyvindry/applinalgcode</a> </li>
+	<li> <b>Code:</b> <a href="https://github.com/oyvindry/wl">https://github.com/oyvindry/wl</a> </li>
 </ul>
 
 
 <h2>spgl1</h2>
 <p>
-<em>spgl1</em> is a wildly used optimization algorithm used for solving 
+<em>spgl1</em> is a wildly used optimization algorithm for solving 
 \[ \text{minimize}_{z \in \mathbb{C}^{N}} \| z\|_1 \quad\text{ subject to }\quad
 \|Az - b\|_2 \leq \epsilon  \] 
-This is a reimplementation of the <a href="https://github.com/mpf/spgl1">spgl1 algorithm</a> done in C++ rather than Matlab. 
-It also includes a very slow implementation of a wavelet transform. This project 
-was developed while writing my master thesis (2016), and have not been touched since. 
+This is a reimplementation of the <a href="https://github.com/mpf/spgl1">spgl1 algorithm</a> done in C++ rather than Matlab.  It also includes a very slow implementation of a wavelet transform. This project was developed while writing my master thesis (2016), and have not been touched since. 
 </p>
 <ul>
 	<li> <b>Language:</b> C++</li>

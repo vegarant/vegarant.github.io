@@ -28,7 +28,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 300
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
@@ -119,6 +119,9 @@ author:
     - label: "Google Scholar"
       icon:  "fab fa-fw fa-google"
       url: "https://scholar.google.co.uk/citations?user=hdO96s8AAAAJ&hl=no&oi=ao"
+    - label: "Publons"
+      icon: "ai fa-fw ai-publons"
+      url: "https://publons.com/researcher/3353126/vegard-antun/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/vegant1"
