@@ -8,7 +8,7 @@ Our paper _'On instabilities of deep learning in image reconstruction and the po
 
 It demonstrates that methods based on AI and deep learning can be unstable for image reconstruction.
 
-<img src="{{ site.url }}{{ site.baseurl }}/assets/images/pnas_paper.png" alt="">
+<a href="https://doi.org/10.1073/pnas.1907377117"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/pnas_paper.png" alt=""></a>
 
 
 
