@@ -7,7 +7,7 @@ classes: wide
 ```
 @article {Antun30088,
 	author = {Antun, Vegard and Renna, Francesco and Poon, Clarice and Adcock, Ben and Hansen, Anders C.},
-	title = {On instabilities of deep learning in image reconstruction and the potential costs of AI},
+	title = {On instabilities of deep learning in image reconstruction and the potential costs of {AI}},
 	volume = {117},
 	number = {48},
 	pages = {30088--30095},
