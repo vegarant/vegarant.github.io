@@ -7,7 +7,7 @@ classes: wide
 ```
 @article{adcock2019uniform,
 title = {Uniform recovery in infinite-dimensional compressed sensing and applications to structured binary sampling},
-journal = {Applied and Computational Harmonic Analysis},
+journal = {Appl.\ Comput.\ Harmon.\ Anal.},
 year = {2021},
 issn = {1063-5203},
 doi = {https://doi.org/10.1016/j.acha.2021.04.001},

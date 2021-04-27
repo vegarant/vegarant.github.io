@@ -17,7 +17,7 @@ classes: wide
 	issn = {0027-8424},
 	URL = {https://www.pnas.org/content/117/48/30088},
 	eprint = {https://www.pnas.org/content/117/48/30088.full.pdf},
-	journal = {Proceedings of the National Academy of Sciences}
+	journal = {Proc.\ Natl.\ Acad.\ Sci.\ USA}
 }
 ```
 
