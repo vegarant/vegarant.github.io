@@ -11,6 +11,7 @@ classes: wide
   journal={Acta Appl.\ Math.},
   volume={173},
   number={7},
+  pages={1-25},
   year={2021},
 }
 ```
