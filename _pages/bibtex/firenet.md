@@ -5,11 +5,16 @@ classes: wide
 
 ## Bibtex
 ```
-@article{antun2021can,
-  title={Can stable and accurate neural networks be computed? -- {O}n the barriers of deep learning and {S}male's 18th problem},
-  author={Colbrook, Matthew J and Antun, Vegard and Hansen, Anders C},
-  journal={arXiv preprint arXiv:2101.08286},
-  year={2021}
+@article{comp_stable_NN22,
+author = {Matthew J. Colbrook  and Vegard Antun  and Anders C. Hansen },
+title = {The difficulty of computing stable and accurate neural networks: On the barriers of deep learning and Smale\&\#x2019;s 18th problem},
+journal = {Proceedings of the National Academy of Sciences},
+volume = {119},
+number = {12},
+journal = {Proc.\ Natl.\ Acad.\ Sci.\ USA}
+pages = {e2107151119},
+year = {2022},
+doi = {10.1073/pnas.2107151119}
 }
 ```
 
