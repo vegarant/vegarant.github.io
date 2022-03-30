@@ -7,7 +7,7 @@ classes: wide
 ```
 @article{comp_stable_NN22,
 author = {Matthew J. Colbrook  and Vegard Antun  and Anders C. Hansen },
-title = {The difficulty of computing stable and accurate neural networks: On the barriers of deep learning and Smale\&\#x2019;s 18th problem},
+title = {The difficulty of computing stable and accurate neural networks: On the barriers of deep learning and Smale's 18th problem},
 journal = {Proceedings of the National Academy of Sciences},
 volume = {119},
 number = {12},
