@@ -5,7 +5,7 @@ classes: wide
 
 ## Bibtex
 ```
-@article {DLmystery21,
+@article {paradox22,
 	author = {Antun, Vegard and Colbrook, Matthew J. and Hansen, Anders C.},
 	title = {Proving Existence Is Not Enough: Mathematical Paradoxes Unravel the Limits of Neural Networks in Artificial Intelligence},
 	volume = {55},
