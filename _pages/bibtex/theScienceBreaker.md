@@ -9,7 +9,7 @@ classes: wide
 	author = {Colbrook, Matthew J. and Antun, Vegard and Hansen, Anders C.},
 	title = {Mathematical paradoxes unearth the boundaries of AI},
 	volume = {8},
-	number = {04},
+	number = {3},
 	pages = {1--2},
  	month = {Aug},	
  	year = {2022},
