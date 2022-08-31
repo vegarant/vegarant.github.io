@@ -13,7 +13,7 @@ classes: wide
 	pages = {3--5},
  	month = {mar},	
  	year = {2021},
-	issn = {1557–9573},
+	issn = {1557--9573},
 	journal = {SIAM News}
 }
 ```
