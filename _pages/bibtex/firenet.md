@@ -6,8 +6,8 @@ classes: wide
 ## Bibtex
 ```
 @article{comp_stable_NN22,
-author = {Matthew J. Colbrook  and Vegard Antun  and Anders C. Hansen },
-title = {The difficulty of computing stable and accurate neural networks: On the barriers of deep learning and Smale's 18th problem},
+author = {Colbrook, Matthew J. and Antun, Vegard and Hansen, Anders},
+title = {The difficulty of computing stable and accurate neural networks: On the barriers of deep learning and {S}male's 18th problem},
 volume = {119},
 number = {12},
 journal = {Proc.\ Natl.\ Acad.\ Sci.\ USA},
